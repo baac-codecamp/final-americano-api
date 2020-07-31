@@ -1,6 +1,7 @@
 const XLSX = require('xlsx')
 const CLT_CUSTOMER = require('../models/customer')
 const path = require('path')
+const _baseCore = require('../utils/baseCore')
 
 async function insertDataCustomer() {
   console.log('Hi InsertDataCustomer')
@@ -107,5 +108,20 @@ async function insertDataCustomer() {
     // }
   })
 }
+const CLT_News = require('../models/news')
+async function addNews(req, res, next) {
+  const {title,imgUrl,desc} = req.body
+  let objNews = new CLT_News()
+  objNews.title = title
+  objNews.imgUrl = imgUrl
+  objNews.desc = desc
+  objNews.save()
+  _baseCore.resMsg(res, 200, 'S', 'Add News Success', {})
+}
+async function getNews(req,res,next){
+  let listNews = await CLT_News.find().sort({createdAt:-1})
+  console.log(listNews)
+  _baseCore.resMsg(res, 200, 'S', 'Get News Success', listNews)
+}
 
-module.exports = { insertDataCustomer }
+module.exports = { insertDataCustomer, addNews,getNews}
