@@ -1,0 +1,36 @@
+{
+  "name": "final-americano-api",
+  "version": "1.0.0",
+  "description": "FINAL-AMERICANO-API",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baac-codecamp/final-americano-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/baac-codecamp/final-americano-api/issues"
+  },
+  "homepage": "https://github.com/baac-codecamp/final-americano-api#readme",
+  "dependencies": {
+    "atob": "^2.1.2",
+    "bcryptjs": "^2.4.3",
+    "btoa": "^1.2.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.25",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "random-name": "^0.1.2",
+    "xlsx": "^0.16.4"
+  }
+}
