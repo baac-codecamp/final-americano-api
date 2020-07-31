@@ -1,8 +1,9 @@
-// const _baseCore = require('../utils/baseCore')
+const _baseCore = require('../utils/baseCore')
 
 const errorHandler = (err, req, res, next) => {
   const statusCode = err.statusCode || 500
-  //_baseCore.resMsg(res, statusCode, 'fail', err.message, err)
+  console.log(err)
+  _baseCore.resMsg(res, statusCode, 'fail', err.message, err)
 }
 
 const notFoundHandler = (req, res, next) => {

@@ -21,29 +21,16 @@ app.use(express.json())
 app.use(passport.initialize())
 
 // Api Routes
-app.use('/admin', require('./routes/adminRoute'))
-//app.use('/front', require('./routes/frontRoute'))
-
-// ----------------TestData
-// Add ObjUser
-
-function TestCreate() {
-  const CLT_USER = require('./models/user')
-  let obj1 = new CLT_USER()
-  console.log(obj1)
-  obj1.username = 'Kraisit'
-  obj1.password = 'baac@123'
-  obj1.fullname = 'Kraisit.ch'
-  obj1.save()
-  console.log(obj1)
+try {
+  app.use('/front', require('./routes/frontRoute'))
+  app.use('/admin', require('./routes/adminRoute'))
+} catch (error) {
+  next(error)
 }
-// TestCreate()
-
-//console.log(data)
 
 // ------------------ Init Data
-const ADMIN_BL = require('./controllers/adminController')
-ADMIN_BL.insertDataCustomer()
+// const ADMIN_BL = require('./controllers/adminController')
+// ADMIN_BL.insertDataCustomer()
 
 app.use(notFoundHandler)
 app.use(errorHandler)

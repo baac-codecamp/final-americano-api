@@ -4,7 +4,7 @@ const newsSchema = new mongoose.Schema(
   {
     title: { type: String, required: true, trim: true },
     imgUrl: { type: String, required: true, trim: true },
-    desc: { type: String, required: true }  
+    desc: { type: String, required: true, trim: true },
   },
   {
     toJSON: { virtuals: true },
