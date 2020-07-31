@@ -22,4 +22,8 @@ function resMsg(res, code, status, msg, data) {
   })
 }
 
-module.exports = { resMsg }
+function randomNumber(min, max) {
+  return Math.round(min + Math.random() * (max - min))
+}
+
+module.exports = { resMsg, randomNumber }

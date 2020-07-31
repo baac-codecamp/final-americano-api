@@ -10,6 +10,7 @@ const customerSchema = new mongoose.Schema(
       {
         accNo: { type: String },
         accName: { type: String },
+        accType: { type: String },
         salakNo: [
           {
             start: { type: String },

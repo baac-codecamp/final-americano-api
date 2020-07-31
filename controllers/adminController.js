@@ -4,113 +4,84 @@ const path = require('path')
 const _baseCore = require('../utils/baseCore')
 
 async function insertDataCustomer() {
-  console.log('Hi InsertDataCustomer')
-  const pathData = path.join(__dirname, '../data/cs.xlsx')
+  const pathData = path.join(__dirname, '../data/customer.xlsx')
   const wb = XLSX.readFile(pathData)
   const wsData = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]])
 
-  // {
-  //   Seq: 97,
-  //   CID: '1103702879126',
-  //   CIFNo: '30461376',
-  //   CIFName: 'กตัญชลี สัญญากิจ',
-  //   AccNo: '400031282890',
-  //   AccName: 'นางสาว กตัญชลี สัญญากิจ   ',
-  //   Branch: 'สาขานางเลิ้ง',
-  //   SalakStart: '80033117',
-  //   SalakEnd: '80033136'
-  // }
-  //console.log(wsData)
-  let i = 0
-  wsData.map(async (itemWs1) => {
+  for (const itemWs1 of wsData) {
     let currCus = await CLT_CUSTOMER.findOne({ cid: itemWs1.CID })
-    // if (i === 0) {
-    //   console.log('--------------------------')
 
-    //   console.log(itemWs1)
-    //   console.log(currCus)
-    //   console.log('--------------------------')
-    // }
-    // i++
     if (currCus) {
-      currCus.cusSalak.push({ accNo: 'aaa' })
-      currCus.bod = new Date()
-      console.log(currCus)
-      currCus.save()
-      // currCus.bod = new Date()
-      // currCus.save()
+      // Update Customer
+
+      let isFoundAccNo = await currCus.cusSalak.find((itemCSLK1) => itemCSLK1.accNo === itemWs1.AccNo)
+
+      if (isFoundAccNo) {
+        // console.log('isFoundAccNo')
+
+        let isFoundSalakNo = await isFoundAccNo.salakNo.find((itemSLK1) => itemSLK1.start === itemWs1.SalakStart && itemSLK1.end === itemWs1.SalakEnd)
+
+        if (!isFoundSalakNo) {
+          // console.log('!isFoundSalakNo')
+
+          // Add SalakNo
+          isFoundAccNo.salakNo.push({ start: itemWs1.SalakStart, end: itemWs1.SalakEnd })
+          await currCus.save()
+          console.log('Add New SalakNo')
+          console.log('UPDATE: ' + itemWs1.CID)
+          console.log('SAVE!')
+        }
+      } else {
+        // Add New Account
+        // console.log('Add New Account')
+
+        currCus.cusSalak.push({
+          accNo: itemWs1.AccNo,
+          accName: itemWs1.AccName.trim(),
+          accType: itemWs1.AccType,
+          salakNo: [
+            {
+              start: itemWs1.SalakStart,
+              end: itemWs1.SalakEnd,
+            },
+          ],
+        })
+
+        await currCus.save()
+        console.log('Add New Account')
+        console.log('UPDATE: ' + itemWs1.CID)
+        console.log('SAVE!')
+      }
+    } else {
+      // Add New Customer
+      let objCus1 = new CLT_CUSTOMER()
+      objCus1.cid = itemWs1.CID
+      objCus1.cif = itemWs1.CIFNo
+      objCus1.bod = new Date()
+      objCus1.cusName = itemWs1.CIFName
+      objCus1.cusSalak = [
+        {
+          accNo: itemWs1.AccNo,
+          accName: itemWs1.AccName.trim(),
+          accType: itemWs1.AccType,
+          salakNo: [
+            {
+              start: itemWs1.SalakStart,
+              end: itemWs1.SalakEnd,
+            },
+          ],
+        },
+      ]
+      await objCus1.save()
+      console.log('Add New Customer')
+      console.log('ADD: ' + itemWs1.CID)
+      console.log('SAVE!')
     }
-
-    // if (currCus) {
-
-    //   // update customer
-    //   //console.log('UPDATE')
-
-    //   currCus.cusSalak.map((itemCusSalak1) => {
-    //     //console.log(itemCusSalak1)
-
-    //     // Test Update
-    //     let clObj1 = itemCusSalak1
-    //     clObj1.salakNo.push({ start: '000999000', end: '999000999' })
-
-    //     // currCus.cusSalak = clObj1
-    //     // console.log(currCus)
-    //     // currCus.save()
-    //     // isFoundAcc
-    //     if (itemWs1.AccNo === itemCusSalak1.accNo) {
-    //       // isSalak Start-End
-    //       let isSameSalakNo = itemCusSalak1.salakNo.find(
-    //         (itemSalakNo1) => itemSalakNo1.start === itemWs1.SalakStart && itemSalakNo1.end === itemWs1.SalakEnd
-    //       )
-    //       if (!isSameSalakNo) {
-    //         let obj1 = {}
-    //       }
-    //     } else {
-    //       // add new account
-    //       let obj1 = {
-    //         accNo: itemWs1.AccNo,
-    //         accName: itemWs1.AccName.trim(),
-    //         salakNo: [
-    //           {
-    //             start: itemWs1.SalakStart,
-    //             end: itemWs1.SalakEnd,
-    //           },
-    //         ],
-    //       }
-
-    //       currCus.cusSalak.push(obj1)
-    //       //currCus.save()
-    //     }
-    //   })
-    // } else {
-    //   // add new customer
-    //   console.log('ADD')
-    //   let objCus1 = new CLT_CUSTOMER()
-
-    //   objCus1.cid = itemWs1.CID
-    //   objCus1.cif = itemWs1.CIFNo
-    //   objCus1.bod = new Date()
-    //   objCus1.cusName = itemWs1.CIFName
-    //   objCus1.cusSalak = [
-    //     {
-    //       accNo: itemWs1.AccNo,
-    //       accName: itemWs1.AccName.trim(),
-    //       salakNo: [
-    //         {
-    //           start: itemWs1.SalakStart,
-    //           end: itemWs1.SalakEnd,
-    //         },
-    //       ],
-    //     },
-    //   ]
-    //   objCus1.save()
-    //   // console.log(objCus1)
-    // }
-  })
+  }
 }
 const CLT_News = require('../models/news')
 async function addNews(req, res, next) {
-  const {title,imgUrl,desc} = req.body
+  const { title, imgUrl, desc } = req.body
   let objNews = new CLT_News()
   objNews.title = title
   objNews.imgUrl = imgUrl
@@ -118,10 +89,10 @@ async function addNews(req, res, next) {
   objNews.save()
   _baseCore.resMsg(res, 200, 'S', 'Add News Success', {})
 }
-async function getNews(req,res,next){
-  let listNews = await CLT_News.find().sort({createdAt:-1})
+async function getNews(req, res, next) {
+  let listNews = await CLT_News.find().sort({ createdAt: -1 })
   console.log(listNews)
   _baseCore.resMsg(res, 200, 'S', 'Get News Success', listNews)
 }
 
-module.exports = { insertDataCustomer, addNews,getNews}
+module.exports = { insertDataCustomer, addNews, getNews }
