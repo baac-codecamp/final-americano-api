@@ -42,8 +42,8 @@ function TestCreate() {
 //console.log(data)
 
 // ------------------ Init Data
-const ADMIN_BL = require('./controllers/adminController')
-ADMIN_BL.insertDataCustomer()
+// const ADMIN_BL = require('./controllers/adminController')
+// ADMIN_BL.insertDataCustomer()
 
 app.use(notFoundHandler)
 app.use(errorHandler)
