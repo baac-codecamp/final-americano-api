@@ -23,54 +23,88 @@ async function insertDataCustomer() {
   let i = 0
   wsData.map(async (itemWs1) => {
     let currCus = await CLT_CUSTOMER.findOne({ cid: itemWs1.CID })
-    if (i === 0) {
-      console.log('--------------------------')
+    // if (i === 0) {
+    //   console.log('--------------------------')
 
-      console.log(itemWs1)
-      console.log(currCus)
-      console.log('--------------------------')
-    }
-    i++
+    //   console.log(itemWs1)
+    //   console.log(currCus)
+    //   console.log('--------------------------')
+    // }
+    // i++
     if (currCus) {
-      // update customer
-      console.log('UPDATE')
-      let aa = []
-
-      currCus.cusSalak.map((itemCusSalak1) => {
-        // isFoundAcc
-        if (itemWs1.AccNo === itemCusSalak1.accNo) {
-          // isSalak Start-End
-          let isSameSalakNo = itemCusSalak1.salakNo.find(
-            (itemSalakNo1) => itemSalakNo1.start === itemWs1.SalakStart && itemSalakNo1.end === itemWs1.SalakEnd
-          )
-          if (!isSameSalakNo) {
-          }
-        }
-      })
-    } else {
-      // add new customer
-      console.log('ADD')
-      let objCus1 = new CLT_CUSTOMER()
-
-      objCus1.cid = itemWs1.CID
-      objCus1.cif = itemWs1.CIFNo
-      objCus1.bod = new Date()
-      objCus1.cusName = itemWs1.CIFName
-      objCus1.cusSalak = [
-        {
-          accNo: itemWs1.AccNo,
-          accName: itemWs1.AccName.trim(),
-          salakNo: [
-            {
-              start: itemWs1.SalakStart,
-              end: itemWs1.SalakEnd,
-            },
-          ],
-        },
-      ]
-      objCus1.save()
-      // console.log(objCus1)
+      currCus.cusSalak.push({ accNo: 'aaa' })
+      currCus.bod = new Date()
+      console.log(currCus)
+      currCus.save()
+      // currCus.bod = new Date()
+      // currCus.save()
     }
+
+    // if (currCus) {
+
+    //   // update customer
+    //   //console.log('UPDATE')
+
+    //   currCus.cusSalak.map((itemCusSalak1) => {
+    //     //console.log(itemCusSalak1)
+
+    //     // Test Update
+    //     let clObj1 = itemCusSalak1
+    //     clObj1.salakNo.push({ start: '000999000', end: '999000999' })
+
+    //     // currCus.cusSalak = clObj1
+    //     // console.log(currCus)
+    //     // currCus.save()
+    //     // isFoundAcc
+    //     if (itemWs1.AccNo === itemCusSalak1.accNo) {
+    //       // isSalak Start-End
+    //       let isSameSalakNo = itemCusSalak1.salakNo.find(
+    //         (itemSalakNo1) => itemSalakNo1.start === itemWs1.SalakStart && itemSalakNo1.end === itemWs1.SalakEnd
+    //       )
+    //       if (!isSameSalakNo) {
+    //         let obj1 = {}
+    //       }
+    //     } else {
+    //       // add new account
+    //       let obj1 = {
+    //         accNo: itemWs1.AccNo,
+    //         accName: itemWs1.AccName.trim(),
+    //         salakNo: [
+    //           {
+    //             start: itemWs1.SalakStart,
+    //             end: itemWs1.SalakEnd,
+    //           },
+    //         ],
+    //       }
+
+    //       currCus.cusSalak.push(obj1)
+    //       //currCus.save()
+    //     }
+    //   })
+    // } else {
+    //   // add new customer
+    //   console.log('ADD')
+    //   let objCus1 = new CLT_CUSTOMER()
+
+    //   objCus1.cid = itemWs1.CID
+    //   objCus1.cif = itemWs1.CIFNo
+    //   objCus1.bod = new Date()
+    //   objCus1.cusName = itemWs1.CIFName
+    //   objCus1.cusSalak = [
+    //     {
+    //       accNo: itemWs1.AccNo,
+    //       accName: itemWs1.AccName.trim(),
+    //       salakNo: [
+    //         {
+    //           start: itemWs1.SalakStart,
+    //           end: itemWs1.SalakEnd,
+    //         },
+    //       ],
+    //     },
+    //   ]
+    //   objCus1.save()
+    //   // console.log(objCus1)
+    // }
   })
 }
 
