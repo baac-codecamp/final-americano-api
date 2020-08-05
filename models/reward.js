@@ -2,10 +2,10 @@ const mongoose = require('mongoose')
 
 const rewardSchema = new mongoose.Schema(
   {
-    rewardAtSeq: { type: String, required: true, trim: true },
-    rewardNo: { type: String, required: true, trim: true },
-    rewardType: { type: String, required: true, trim: true },
     rewardAtDate: { type: Date, required: true },
+    rewardAtSeq: { type: String, required: true, trim: true },
+    rewardPrice: { type: Number, required: true },
+    rewardNo: { type: String, required: true, trim: true },
   },
   {
     toJSON: { virtuals: true },

@@ -1,5 +1,6 @@
 const XLSX = require('xlsx')
 const CLT_CUSTOMER = require('../models/customer')
+const CLT_REWARD = require('../models/reward')
 const CLT_News = require('../models/news')
 const path = require('path')
 const _baseCore = require('../utils/baseCore')
@@ -81,6 +82,32 @@ async function insertDataCustomer() {
   }
 }
 
+async function insertDataReward() {
+  const pathData = path.join(__dirname, '../data/reward.xlsx')
+  const wb = XLSX.readFile(pathData)
+  const wsData = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]])
+
+  let currData = await CLT_REWARD.find()
+  for (const item1 of currData) {
+    await CLT_REWARD.findByIdAndDelete({ _id: item1._id })
+  }
+  console.log('Delete Data Reward Success!')
+
+  for (const itemWs1 of wsData) {
+    let objRew1 = new CLT_REWARD()
+    const { RewardAtDate, RewardAtSeq, RewardPrice, RewardNo } = itemWs1
+    objRew1.rewardAtDate = new Date(RewardAtDate)
+    objRew1.rewardAtSeq = RewardAtSeq
+    objRew1.rewardPrice = RewardPrice
+    objRew1.rewardNo = RewardNo
+    objRew1.save()
+    // console.log('Add New Data Reward')
+    // console.log('SAVE!')
+  }
+
+  console.log('Add New Reward Success!')
+}
+
 async function addNews(req, res, next) {
   const { title, imgUrl, desc } = req.body
 
@@ -93,4 +120,4 @@ async function addNews(req, res, next) {
   _baseCore.resMsg(res, 200, 'S', 'Add News Success', {})
 }
 
-module.exports = { insertDataCustomer, addNews }
+module.exports = { insertDataCustomer, insertDataReward, addNews }

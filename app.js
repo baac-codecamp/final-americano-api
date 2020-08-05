@@ -29,11 +29,14 @@ try {
 }
 
 // ------------------ Init Data
-// const ADMIN_BL = require('./controllers/adminController')
+const ADMIN_BL = require('./controllers/adminController')
 // ADMIN_BL.insertDataCustomer()
+//ADMIN_BL.insertDataReward()
 
-app.use(notFoundHandler)
-app.use(errorHandler)
+const FRONT_BL = require('./controllers/frontController')
+// FRONT_BL.findSalakByCID()
+// app.use(notFoundHandler)
+// app.use(errorHandler)
 
 // Start server ...
 app.listen(PORT, () => console.log(`[Check-Salak-API][${ENV}]: Listening on port ${PORT}`))
