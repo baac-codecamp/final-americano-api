@@ -59,7 +59,7 @@ async function insertDataCustomer() {
       let objCus1 = new CLT_CUSTOMER()
       objCus1.cid = itemWs1.CID
       objCus1.cif = itemWs1.CIFNo
-      objCus1.bod = new Date()
+      objCus1.bod = itemWs1.BOD
       objCus1.cusName = itemWs1.CIFName
       objCus1.cusSalak = [
         {
@@ -117,7 +117,7 @@ async function addNews(req, res, next) {
   objNews.desc = desc
   objNews.save()
 
-  _baseCore.resMsg(res, 200, 'S', 'Add News Success', {})
+  return _baseCore.resMsg(res, 200, 'S', 'Add News Success', {})
 }
 
 module.exports = { insertDataCustomer, insertDataReward, addNews }

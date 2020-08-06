@@ -8,8 +8,7 @@ async function signup(req, res, next) {
   // check isFound username
   const currUser = await CLT_USER.findOne({ username: username })
   if (currUser) {
-    _baseCore.resMsg(res, 400, 'F', 'Username already exits', {})
-    return
+    return _baseCore.resMsg(res, 400, 'F', 'Username already exits', {})
   }
 
   // add obj user
@@ -20,7 +19,7 @@ async function signup(req, res, next) {
 
   await objUser.save()
 
-  _baseCore.resMsg(res, 201, 'S', 'signup success!', { username: username })
+  return _baseCore.resMsg(res, 201, 'S', 'signup success!', { username: username })
 }
 
 async function login(req, res, next) {
@@ -29,14 +28,13 @@ async function login(req, res, next) {
   // check username & password
   const currUser = await CLT_USER.findOne({ username: username })
   if (!currUser) {
-    _baseCore.resMsg(res, 400, 'F', 'Username or password is wrong!', {})
-    return
+    return _baseCore.resMsg(res, 400, 'F', 'Username or password is wrong!', {})
   }
 
   // get authen
   const objAuth = await currUser.toAuthen()
 
-  _baseCore.resMsg(res, 200, 'S', 'Login is success!', objAuth)
+  return _baseCore.resMsg(res, 200, 'S', 'Login is success!', objAuth)
 }
 
 module.exports = { signup, login }

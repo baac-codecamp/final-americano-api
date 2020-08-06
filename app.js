@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const passport = require('passport')
+const moment = require('moment')
 
 const db = require('./config/db')
 const { PORT, ENV } = require('./config/index')
@@ -31,12 +32,15 @@ try {
 // ------------------ Init Data
 const ADMIN_BL = require('./controllers/adminController')
 // ADMIN_BL.insertDataCustomer()
-//ADMIN_BL.insertDataReward()
+// ADMIN_BL.insertDataReward()
 
 const FRONT_BL = require('./controllers/frontController')
-// FRONT_BL.findSalakByCID()
-// app.use(notFoundHandler)
-// app.use(errorHandler)
+// FRONT_BL.findSalakByCid()
+// FRONT_BL.findSalakBySelf()
+// FRONT_BL.getListRewardAtDate()
+
+app.use(notFoundHandler)
+app.use(errorHandler)
 
 // Start server ...
 app.listen(PORT, () => console.log(`[Check-Salak-API][${ENV}]: Listening on port ${PORT}`))
