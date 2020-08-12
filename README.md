@@ -13,7 +13,9 @@ Check Salak API คือ REST API สำหรับเว็บไซต์ต
 
 ## 📘 API Document
 
-1. **[getNews]()** : `ดึงข้อมูลข่าวสารทั้งหมด โดยเรียงจากวันที่ล่าสุด`
+1. **[getNews](#)** : `ดึงข้อมูลข่าวสารทั้งหมด โดยเรียงจากวันที่ล่าสุด`
+   <details>
+   <summary>View Details</summary>
 
    - **Method** : `GET`
    - **Url** : `http://{URL}:{PORT}/front/getNews`
@@ -23,6 +25,7 @@ Check Salak API คือ REST API สำหรับเว็บไซต์ต
      - param : `-`
      - queryString : `-`
    - **Response** :
+
      ```json
      {
        "response_status": "success",
@@ -54,7 +57,11 @@ Check Salak API คือ REST API สำหรับเว็บไซต์ต
      }
      ```
 
-2. **[getNewsById]()** : `ดึงข้อมูลข่าวสาร จาก id ข้อมูล`
+     </details>
+
+2. **[getNewsById](#)** : `ดึงข้อมูลข่าวสาร จาก id ข้อมูล`
+   <details>
+   <summary>View Details</summary>
 
    - **Method** : `GET`
    - **Url** : `http://{URL}:{PORT}/front/getNews/:id`
@@ -83,7 +90,11 @@ Check Salak API คือ REST API สำหรับเว็บไซต์ต
      }
      ```
 
-3. **[getListRewardAtDate]()** : `ดึง Group ข้อมูลวันที่ของสลาก`
+    </details>
+
+3. **[getListRewardAtDate](#)** : `ดึง Group ข้อมูลวันที่ของสลาก`
+   <details>
+   <summary>View Details</summary>
 
    - **Method** : `GET`
    - **Url** : `http://{URL}:{PORT}/front/getListRewardAtDate`
@@ -93,6 +104,7 @@ Check Salak API คือ REST API สำหรับเว็บไซต์ต
      - param : `-`
      - queryString : `-`
    - **Response** :
+
      ```json
      {
        "response_status": "success",
@@ -103,7 +115,11 @@ Check Salak API คือ REST API สำหรับเว็บไซต์ต
      }
      ```
 
-4. **[findSalakByCid]()** : `ตรวจข้อมูลการถูกสลากรางวัลด้วย CID`
+     </details>
+
+4. **[findSalakByCid](#)** : `ตรวจข้อมูลการถูกสลากรางวัลด้วย CID`
+   <details>
+   <summary>View Details</summary>
 
    - **Method** : `POST`
    - **Url** : `http://{URL}:{PORT}/front/findSalakByCid`
@@ -215,7 +231,11 @@ Check Salak API คือ REST API สำหรับเว็บไซต์ต
      }
      ```
 
-5. **[findSalakBySelf]()** : `ตรวจข้อมูลการถูกสลากรางวัลด้วยตนเอง จากงวดประจำวันที่`
+    </details>
+
+5. **[findSalakBySelf](#)** : `ตรวจข้อมูลการถูกสลากรางวัลด้วยตนเอง จากงวดประจำวันที่`
+   <details>
+   <summary>View Details</summary>
 
    - **Method** : `POST`
    - **Url** : `http://{URL}:{PORT}/front/findSalakBySelf`
@@ -267,7 +287,11 @@ Check Salak API คือ REST API สำหรับเว็บไซต์ต
      }
      ```
 
-6. **[signup]()** : `ใช้สมัครสมาชิกเพื่อเช้าใช้งานระบบจัดการสลาก`
+    </details>
+
+6. **[signup](#)** : `ใช้สมัครสมาชิกเพื่อเช้าใช้งานระบบจัดการสลาก`
+   <details>
+   <summary>View Details</summary>
 
    - **Method** : `POST`
    - **Url** : `http://{URL}:{PORT}/admin/signup`
@@ -301,7 +325,11 @@ Check Salak API คือ REST API สำหรับเว็บไซต์ต
      }
      ```
 
-7. **[login]()** : `ใช้เข้าสู่ระบบจัดการสลาก`
+    </details>
+
+7. **[login](#)** : `ใช้เข้าสู่ระบบจัดการสลาก`
+   <details>
+   <summary>View Details</summary>
 
    - **Method** : `POST`
    - **Url** : `http://{URL}:{PORT}/admin/login`
@@ -337,7 +365,11 @@ Check Salak API คือ REST API สำหรับเว็บไซต์ต
      }
      ```
 
-8. **[insertDataCustomer]()** : `ใช้นำเข้าข้อมูล Customer`
+    </details>
+
+8. **[insertDataCustomer](#)** : `ใช้นำเข้าข้อมูล Customer`
+    <details>
+   <summary>View Details</summary>
 
    - **Method** : `POST`
    - **Url** : `http://{URL}:{PORT}/admin/insertDataCustomer`
@@ -529,85 +561,94 @@ Check Salak API คือ REST API สำหรับเว็บไซต์ต
      }
      ```
 
-9. **[insertDataReward]()** : `ใช้นำเข้าข้อมูล Reward`
+    </details>
+
+9. **[insertDataReward](#)** : `ใช้นำเข้าข้อมูล Reward`
+   <details>
+   <summary>View Details</summary>
 
    - **Method** : `POST`
    - **Url** : `http://{URL}:{PORT}/admin/insertDataReward`
    - **Request** :
-     - header : `Content-Type: application/json`
-     - body :
-       ```json
-       {
-         "listDataReward": [
-           {
-             "RewardAtDate": "2020-06-16",
-             "RewardAtSeq": "1",
-             "RewardPrice": "1000000",
-             "RewardNo": "9182368"
-           },
-           {
-             "RewardAtDate": "2020-06-16",
-             "RewardAtSeq": "2",
-             "RewardPrice": "20000",
-             "RewardNo": 4948894
-           },
-           {
-             "RewardAtDate": "2020-06-16",
-             "RewardAtSeq": "2",
-             "RewardPrice": "20000",
-             "RewardNo": 5040803
-           },
-           {
-             "RewardAtDate": "2020-06-16",
-             "RewardAtSeq": "2",
-             "RewardPrice": "3000",
-             "RewardNo": 6358780
-           },
-           {
-             "RewardAtDate": "2020-06-16",
-             "RewardAtSeq": "3",
-             "RewardPrice": "3000",
-             "RewardNo": "0072809"
-           },
-           {
-             "RewardAtDate": "2020-06-16",
-             "RewardAtSeq": "3",
-             "RewardPrice": "3000",
-             "RewardNo": "0466749"
-           },
-           {
-             "RewardAtDate": "2020-06-16",
-             "RewardAtSeq": "3",
-             "RewardPrice": "400",
-             "RewardNo": 3159724
-           },
-           {
-             "RewardAtDate": "2020-06-16",
-             "RewardAtSeq": "3",
-             "RewardPrice": "400",
-             "RewardNo": "3721866"
-           },
-           {
-             "RewardAtDate": "2020-06-16",
-             "RewardAtSeq": "3",
-             "RewardPrice": "400",
-             "RewardNo": 4235750
-           }
-         ]
-       }
-       ```
-     - param : `-`
-     - queryString : `-`
-   - **Response** :
+   - header : `Content-Type: application/json`
+   - body :
      ```json
      {
-       "response_status": "success",
-       "response_message": "Add New Reward Success!",
-       "response_data": {}
+       "listDataReward": [
+         {
+           "RewardAtDate": "2020-06-16",
+           "RewardAtSeq": "1",
+           "RewardPrice": "1000000",
+           "RewardNo": "9182368"
+         },
+         {
+           "RewardAtDate": "2020-06-16",
+           "RewardAtSeq": "2",
+           "RewardPrice": "20000",
+           "RewardNo": 4948894
+         },
+         {
+           "RewardAtDate": "2020-06-16",
+           "RewardAtSeq": "2",
+           "RewardPrice": "20000",
+           "RewardNo": 5040803
+         },
+         {
+           "RewardAtDate": "2020-06-16",
+           "RewardAtSeq": "2",
+           "RewardPrice": "3000",
+           "RewardNo": 6358780
+         },
+         {
+           "RewardAtDate": "2020-06-16",
+           "RewardAtSeq": "3",
+           "RewardPrice": "3000",
+           "RewardNo": "0072809"
+         },
+         {
+           "RewardAtDate": "2020-06-16",
+           "RewardAtSeq": "3",
+           "RewardPrice": "3000",
+           "RewardNo": "0466749"
+         },
+         {
+           "RewardAtDate": "2020-06-16",
+           "RewardAtSeq": "3",
+           "RewardPrice": "400",
+           "RewardNo": 3159724
+         },
+         {
+           "RewardAtDate": "2020-06-16",
+           "RewardAtSeq": "3",
+           "RewardPrice": "400",
+           "RewardNo": "3721866"
+         },
+         {
+           "RewardAtDate": "2020-06-16",
+           "RewardAtSeq": "3",
+           "RewardPrice": "400",
+           "RewardNo": 4235750
+         }
+       ]
      }
      ```
+   - param : `-`
+   - queryString : `-`
+   - **Response** :
 
-10. **[addNews]()** : `ใช้นำเข้าข้อมูล News`
+   ```json
+   {
+     "response_status": "success",
+     "response_message": "Add New Reward Success!",
+     "response_data": {}
+   }
+   ```
+
+   </details>
+
+10. **[addNews](#)** : `ใช้นำเข้าข้อมูล News`
+     <details>
+    <summary>View Details</summary>
 
     - **Method** : `POST`
     - **Url** : `http://{URL}:{PORT}/admin/addNews`
@@ -631,6 +672,8 @@ Check Salak API คือ REST API สำหรับเว็บไซต์ต
         "response_data": {}
       }
       ```
+
+     </details>
 
 ## ⚙ How to use
 
