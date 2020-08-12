@@ -1,7 +1,6 @@
 const express = require('express')
 const cors = require('cors')
 const passport = require('passport')
-const moment = require('moment')
 
 const db = require('./config/db')
 const { PORT, ENV } = require('./config/index')
@@ -31,13 +30,17 @@ try {
 
 // ------------------ Init Data
 const ADMIN_BL = require('./controllers/adminController')
-// ADMIN_BL.insertDataCustomer()
-// ADMIN_BL.insertDataReward()
+//ADMIN_BL.insertDataCustomer_Mock()
+//ADMIN_BL.insertDataReward_Mock()
+//ADMIN_BL.addNews_Mock()
 
 const FRONT_BL = require('./controllers/frontController')
 // FRONT_BL.findSalakByCid()
 // FRONT_BL.findSalakBySelf()
 // FRONT_BL.getListRewardAtDate()
+
+const SYSTEM_BL = require('./controllers/systemController')
+//SYSTEM_BL.signup_Mock()
 
 app.use(notFoundHandler)
 app.use(errorHandler)

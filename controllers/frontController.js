@@ -11,6 +11,7 @@ async function getNews(req, res, next) {
 
   return _baseCore.resMsg(res, 200, 'S', 'Get News Success!', objResult)
 }
+
 async function getNewsById(req, res, next) {
   const { id } = req.params
   let objResult = {}
@@ -79,8 +80,8 @@ async function findSalakBySelf(req, res, next) {
   //const rewardAtDate = '2020-06-16'
   let objResult = {}
   const lsReward = await CLT_REWARD.find({ rewardAtDate: rewardAtDate })
-
-  if (!lsReward) {
+  console.log(!lsReward)
+  if (!lsReward || lsReward.length === 0) {
     return _baseCore.resMsg(res, 400, 'F', 'Is not rewardDate!', {})
   }
 

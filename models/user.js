@@ -23,7 +23,7 @@ userSchema.methods.encryptPassword = async (password) => {
 }
 
 userSchema.methods.comparePassword = async function (password) {
-  const isValid = await bcrypt.compare(password, this.Password)
+  const isValid = await bcrypt.compare(password, this.password)
   return isValid
 }
 
