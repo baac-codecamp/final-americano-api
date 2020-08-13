@@ -6,6 +6,7 @@ Check Salak API คือ REST API สำหรับเว็บไซต์ต
 
 - [x] Node.js
 - [x] Express.js
+- [x] mongoose
 
 ## 📋 Feature
 
