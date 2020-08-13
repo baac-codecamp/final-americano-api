@@ -14,6 +14,9 @@ Check Salak API คือ REST API สำหรับเว็บไซต์ต
 
 ## 📘 API Document
 
+**URL SIT** : `http://localhost:9442`
+**URL UAT** : `https://americano-salak-api.topwork.asia`
+
 1. **[getNews](#)** : `ดึงข้อมูลข่าวสารทั้งหมด โดยเรียงจากวันที่ล่าสุด`
    <details>
    <summary>View Details</summary>
