@@ -69,7 +69,7 @@ Check Salak API คือ REST API สำหรับเว็บไซต์ต
    <summary>View Details</summary>
 
    - **Method** : `GET`
-   - **Url** : `http://{URL}:{PORT}/front/getNews/:id`
+   - **Url** : `http://{URL}:{PORT}/front/getNewsById/:id`
    - **Request** :
      - header : `-`
      - body : `-`
