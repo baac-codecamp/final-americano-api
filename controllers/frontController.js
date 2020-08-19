@@ -70,7 +70,10 @@ async function findSalakByCid(req, res, next) {
       }
     }
   }
-  objResult = { ...objResult, arrReward: arrReward }
+  objResult = {
+    ...objResult,
+    arrReward: arrReward.sort((a, b) => new Date(b.rewardAtDate) - new Date(a.rewardAtDate)),
+  }
   //   console.log(objResult)
   return _baseCore.resMsg(res, 200, 'S', 'Find salak by cid success!', objResult)
 }
