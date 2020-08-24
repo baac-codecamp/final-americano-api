@@ -1,3 +1,5 @@
+/sonar-scanner
+/.scannerwork
 # Logs
 logs
 *.log
